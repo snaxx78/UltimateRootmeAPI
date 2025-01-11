@@ -168,10 +168,8 @@ async def player_stats(ctx, player_name: str = None):
     if player_name is None:
         user_id = ctx.author.id
         user_pseudo = DISCORD_USER_IDS.get(str(user_id))
-
-    if player_name == "poat":
+    elif player_name == "poat":
         user_pseudo = "Onyx-852889"
-
     elif player_name == "all" or player_name == "ALL" or player_name == "*":
         all_data = get_all_user_data()
         if not all_data:
@@ -190,7 +188,9 @@ async def player_stats(ctx, player_name: str = None):
         return
     else:
         user_pseudo = player_name
+        print(user_pseudo)
 
+    print(user_pseudo)
     stats = get_user_data(inverse_translate_names(user_pseudo))
 
     if not stats:
