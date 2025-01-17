@@ -219,6 +219,10 @@ async def player_stats(ctx, player_name: str = None):
 
 @bot.command(name="refresh")
 async def refresh(ctx):
+    # only authors 756178270830985286 and 445640456852865056 are allowed to run this command
+    if ctx.author.id not in [756178270830985286, 445640456852865056]:
+        await ctx.send("Vous n'êtes pas autorisé à exécuter cette commande.")
+        return
     await ctx.send(
         "Données en cours de mise à jour cela peut prendre quelques secondes..."
     )
@@ -354,8 +358,7 @@ async def on_ready():
         logging.info(f"- {guild.name} (ID: {guild.id})")
 
     if channel:
-        await channel.send("Yo, je suis la V2 🚀")
-        await channel.send(f"Je tourne depuis l'env de {ENV}🚀\nPour voir la liste des commandes disponibles, tapez !commandes")
+        await channel.send("Yo, je suis la V2 🚀\nPour voir la liste des commandes disponibles, tapez !commandes")
     else:
         logging.error("Channel introuvable !")
 
